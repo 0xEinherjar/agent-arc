@@ -1,132 +1,132 @@
-# Guia de Deploy para Produção
+# Production Deployment Guide
 
-Este documento descreve o processo completo de deploy para produção do ERC20Factory.
+This document describes the complete process for deploying the ERC20Factory to production.
 
-## 🔒 Pré-requisitos de Segurança
+## 🔒 Security Prerequisites
 
-### Antes do Deploy
+### Before Deployment
 
-- [ ] **Auditoria de Código**: Contrato auditado por profissionais qualificados
-- [ ] **Testes**: Todos os testes passando (unitários e de integração)
-- [ ] **Review de Código**: Código revisado por múltiplos desenvolvedores
-- [ ] **Variáveis de Ambiente**: Todas as variáveis necessárias configuradas
-- [ ] **Backup de Chaves**: Chave privada segura e com backup
-- [ ] **Verificação de Rede**: Confirmar que está deployando na rede correta
-- [ ] **Saldo Suficiente**: Garantir ETH/BNB suficiente para gas fees
+- [ ] **Code Audit**: Contract audited by qualified professionals
+- [ ] **Tests**: All tests passing (unit and integration)
+- [ ] **Code Review**: Code reviewed by multiple developers
+- [ ] **Environment Variables**: All necessary variables configured
+- [ ] **Key Backup**: Private key secure and backed up
+- [ ] **Network Verification**: Confirm you are deploying to the correct network
+- [ ] **Sufficient Balance**: Ensure sufficient ETH/BNB for gas fees
 
-## 📋 Checklist de Deploy
+## 📋 Deployment Checklist
 
-### 1. Preparação
+### 1. Preparation
 
 ```bash
-# Instalar dependências
+# Install dependencies
 npm install
 
-# Compilar contratos
+# Compile contracts
 npm run compile
 ```
 
-### 2. Configuração de Ambiente
+### 2. Environment Configuration
 
-Crie um arquivo `.env` com:
+Create a `.env` file with:
 
 ```env
-# Chave privada da conta que fará o deploy
+# Private key of the account that will perform the deployment
 PRIVATE_KEY=your_private_key_here
 
-# Configuração do optimizer (opcional)
+# Optimizer configuration (optional)
 OPTIMIZER_RUNS=1000000
 ```
 
-⚠️ **IMPORTANTE**: Nunca commite o arquivo `.env` com valores reais!
+⚠️ **IMPORTANT**: Never commit the `.env` file with real values!
 
-### 3. Deploy em Testnet
+### 3. Deploy to Testnet
 
-Sempre teste primeiro em testnet:
+Always test first on testnet:
 
 ```bash
-# Deploy em testnet
-npm run deploy:tarc  # ou outra testnet
+# Deploy to testnet
+npm run deploy:tarc  # or other testnet
 
-# Verificar o deploy
+# Verify the deploy
 CONTRACT_ADDRESS=0x... npm run check --network testnet_arc
 
-# Verificar no block explorer
+# Verify on block explorer
 CONTRACT_ADDRESS=0x... npm run verify --network testnet_arc
 ```
 
-### 4. Deploy em Mainnet
+### 4. Deploy to Mainnet
 
-⚠️ **ATENÇÃO**: Deploy em mainnet é permanente e custa dinheiro real!
+⚠️ **WARNING**: Deploying to mainnet is permanent and costs real money!
 
 ```bash
-# 1. Verificar rede no hardhat.config.js
-# 2. Confirmar que está na rede correta
+# 1. Verify network in hardhat.config.js
+# 2. Confirm you are on the correct network
 # 3. Deploy
-npm run deploy:mainnet  # (após configurar)
+npm run deploy:mainnet  # (after configuring)
 
-# 4. Aguardar confirmações (recomendado: 5+ blocos)
-# 5. Verificar deploy
+# 4. Wait for confirmations (recommended: 5+ blocks)
+# 5. Verify deploy
 CONTRACT_ADDRESS=0x... npm run check --network mainnet
 
-# 6. Verificar no block explorer
+# 6. Verify on block explorer
 npx hardhat verify --network mainnet <CONTRACT_ADDRESS>
 ```
 
-### 5. Pós-Deploy
+### 5. Post-Deploy
 
-- [ ] Salvar endereço do contrato deployado
-- [ ] Salvar hash da transação de deploy
-- [ ] Verificar contrato no block explorer
-- [ ] Testar funcionalidades básicas do contrato
-- [ ] Documentar deployment (endereço, rede, data)
-- [ ] Notificar equipe/stakeholders
+- [ ] Save deployed contract address
+- [ ] Save deployment transaction hash
+- [ ] Verify contract on block explorer
+- [ ] Test basic contract functionalities
+- [ ] Document deployment (address, network, date)
+- [ ] Notify team/stakeholders
 
-## 🔍 Verificação de Contratos
+## 🔍 Contract Verification
 
-### Verificação Automática via Hardhat
+### Automatic Verification via Hardhat
 
 ```bash
 npx hardhat verify --network <network> <CONTRACT_ADDRESS>
 ```
 
-### Verificação Manual
+### Manual Verification
 
-1. Acesse o block explorer da rede (Etherscan, BscScan, etc.)
-2. Navegue até o endereço do contrato
-3. Clique em "Verify and Publish"
-4. Cole o código do contrato
-5. Selecione as configurações de compilação
-6. Submeta para verificação
+1. Access the network's block explorer (Etherscan, BscScan, etc.)
+2. Navigate to the contract address
+3. Click on "Verify and Publish"
+4. Paste the contract code
+5. Select compliation settings
+6. Submit for verification
 
-## 📊 Monitoramento
+## 📊 Monitoring
 
-Após o deploy, monitore:
+After deployment, monitor:
 
-- Transações do contrato
-- Eventos emitidos
-- Uso de gas
-- Erros ou reverts
-- Atividade suspeita
+- Contract transactions
+- Emitted events
+- Gas usage
+- Errors or reverts
+- Suspicious activity
 
 ## 🚨 Troubleshooting
 
-### Erro: "Insufficient funds"
-- Verifique se tem saldo suficiente para gas fees
-- Considere ajustar gas price no hardhat.config.js
+### Error: "Insufficient funds"
+- Check if you have sufficient balance for gas fees
+- Consider adjusting gas price in hardhat.config.js
 
-### Erro: "Contract verification failed"
-- Verifique se está usando as mesmas configurações de compilação
-- Confirme que o código fonte corresponde ao bytecode deployado
-- Verifique se todas as dependências estão corretas
+### Error: "Contract verification failed"
+- Verify you are using the same compilation settings
+- Confirm source code matches deployed bytecode
+- Check if all dependencies are correct
 
-### Erro: "Nonce too high"
-- Aguarde alguns minutos e tente novamente
-- Ou defina manualmente o nonce
+### Error: "Nonce too high"
+- Wait a few minutes and try again
+- Or manually set the nonce
 
-## 📝 Documentação de Deployment
+## 📝 Deployment Documentation
 
-Mantenha um registro de cada deployment:
+Keep a record of each deployment:
 
 ```json
 {
@@ -142,9 +142,8 @@ Mantenha um registro de cada deployment:
 }
 ```
 
-## 🔗 Links Úteis
+## 🔗 Useful Links
 
 - [Hardhat Deployment Guide](https://hardhat.org/hardhat-runner/docs/guides/deploying)
 - [OpenZeppelin Security Best Practices](https://docs.openzeppelin.com/contracts/security)
 - [Ethereum Gas Tracker](https://etherscan.io/gastracker)
-

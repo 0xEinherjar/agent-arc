@@ -1,18 +1,18 @@
 # ERC20 Factory
 
-Uma factory para criação de tokens ERC20 usando a biblioteca OpenZeppelin. Este projeto permite deploy fácil e seguro de tokens ERC20 customizados com nome, símbolo, decimais e supply inicial configuráveis.
+A factory for creating ERC20 tokens using the OpenZeppelin library. This project allows for easy and secure deployment of custom ERC20 tokens with configurable name, symbol, decimals, and initial supply.
 
-## 📋 Características
+## 📋 Features
 
-- ✅ Factory pattern para criação de tokens ERC20
-- ✅ Baseado em contratos auditados da OpenZeppelin
-- ✅ Suporte a decimais customizados
-- ✅ Supply inicial configurável
-- ✅ Rastreamento de tokens criados por endereço
-- ✅ Lista completa de todos os tokens deployados
-- ✅ Eventos para rastreamento de criação
+- ✅ Factory pattern for ERC20 token creation
+- ✅ Based on audited OpenZeppelin contracts
+- ✅ Support for custom decimals
+- ✅ Configurable initial supply
+- ✅ Tracking of tokens created by address
+- ✅ Complete list of all deployed tokens
+- ✅ Events for creation tracking
 
-## 🛠️ Tecnologias
+## 🛠️ Technologies
 
 - **Solidity** ^0.8.20
 - **Hardhat** ^2.20.1
@@ -20,198 +20,198 @@ Uma factory para criação de tokens ERC20 usando a biblioteca OpenZeppelin. Est
 - **Hardhat Toolbox** ^4.0.0
 - **Hardhat ABI Exporter** ^2.10.1
 
-## 📦 Instalação
+## 📦 Installation
 
 ```bash
 npm install
 ```
 
-## ⚙️ Configuração
+## ⚙️ Configuration
 
-1. Crie um arquivo `.env` na raiz do projeto:
+1. Create a `.env` file in the project root:
 
 ```env
-# Chave privada da conta que fará o deploy
-PRIVATE_KEY=sua_chave_privada_aqui
+# Private key of the account that will perform the deployment
+PRIVATE_KEY=your_private_key_here
 
-# API Keys para verificação de contratos (opcional)
-ETHERSCAN_API_KEY=sua_chave_etherscan
-BSCSCAN_API_KEY=sua_chave_bscscan
-BASESCAN_API_KEY=sua_chave_basescan
+# API Keys for contract verification (optional)
+ETHERSCAN_API_KEY=your_etherscan_key
+BSCSCAN_API_KEY=your_bscscan_key
+BASESCAN_API_KEY=your_basescan_key
 
-# RPC URLs (opcional - padrões serão usados se não especificado)
+# RPC URLs (optional - defaults will be used if not specified)
 RPC_URL_ARC=https://rpc.testnet.arc.network
 RPC_URL_BSC=https://data-seed-prebsc-1-s1.binance.org:8545
 RPC_URL_BASE=https://goerli.base.org
 
-# Configuração do optimizer (opcional, padrão: 1000000)
+# Optimizer configuration (optional, default: 1000000)
 OPTIMIZER_RUNS=1000000
 ```
 
-2. Configure as redes no arquivo `hardhat.config.js` conforme necessário.
+2. Configure the networks in the `hardhat.config.js` file as needed.
 
-⚠️ **IMPORTANTE**: Nunca commite o arquivo `.env` com valores reais!
+3. ⚠️ **IMPORTANT**: Never commit the `.env` file with real values!
 
-## 🚀 Uso
+## 🚀 Usage
 
-### Compilar os contratos
+### Compile the contracts
 
 ```bash
 npm run compile
 ```
 
-### Exportar ABI
+### Export ABI
 
 ```bash
 npm run abi
 ```
 
-O ABI será exportado para o diretório `./abi`.
+The ABI will be exported to the `./abi` directory.
 
 ### Deploy
 
-#### Deploy em Localhost
+#### Deploy to Localhost
 
 ```bash
 npm run deploy:localhost
 ```
 
-#### Deploy em Testnet Arc
+#### Deploy to Testnet Arc
 
 ```bash
 npm run deploy:tarc
 ```
 
-#### Deploy em outras redes
+#### Deploy to other networks
 
-Configure as redes no `hardhat.config.js` e crie scripts de deploy adicionais no `package.json`.
+Configure the networks in `hardhat.config.js` and create additional deploy scripts in `package.json`.
 
-### Limpar artefatos
+### Clean artifacts
 
 ```bash
 npm run clean
 ```
 
-### Verificar contrato deployado
+### Verify deployed contract
 
-Após o deploy, você pode verificar o contrato no block explorer:
+After deployment, you can verify the contract on the block explorer:
 
 ```bash
-# Verificar status do deployment
+# Verify deployment status
 CONTRACT_ADDRESS=0x... npm run check --network <network>
 
-# Verificar contrato no block explorer
+# Verify contract on block explorer
 CONTRACT_ADDRESS=0x... npm run verify --network <network>
 
-# Ou usar o comando direto do Hardhat
+# Or use the direct Hardhat command
 npx hardhat verify --network <network> <CONTRACT_ADDRESS>
 ```
 
-### Iniciar node local
+### Start local node
 
 ```bash
 npm run node
 ```
 
-## 📁 Estrutura do Projeto
+## 📁 Project Structure
 
 ```
 contract/
 ├── contracts/
-│   └── ERC20Factory.sol      # Contrato principal da factory
+│   └── ERC20Factory.sol      # Main factory contract
 ├── scripts/
-│   └── deploy.js             # Script de deploy
-├── abi/                      # ABIs exportados (gerado)
-├── artifacts/                # Artefatos de compilação (gerado)
-├── cache/                    # Cache do Hardhat (gerado)
-├── hardhat.config.js         # Configuração do Hardhat
-└── package.json              # Dependências do projeto
+│   └── deploy.js             # Deploy script
+├── abi/                      # Exported ABIs (generated)
+├── artifacts/                # Build artifacts (generated)
+├── cache/                    # Hardhat cache (generated)
+├── hardhat.config.js         # Hardhat configuration
+└── package.json              # Project dependencies
 ```
 
-## 📄 Contratos
+## 📄 Contracts
 
 ### ERC20Factory
 
-Factory principal para criação de tokens ERC20.
+Main factory for validating ERC20 tokens.
 
-**Funções principais:**
+**Main Functions:**
 
-- `createToken(name, symbol, decimals, initialSupply, owner)`: Cria um novo token ERC20
-- `allTokensLength()`: Retorna o número total de tokens criados
-- `getTokensByCreator(creator)`: Retorna todos os tokens criados por um endereço
+- `createToken(name, symbol, decimals, initialSupply, owner)`: Creates a new ERC20 token
+- `allTokensLength()`: Returns the total number of created tokens
+- `getTokensByCreator(creator)`: Returns all tokens created by an address
 
-**Eventos:**
+**Events:**
 
-- `ERC20TokenDeployed`: Emitido quando um novo token é criado
+- `ERC20TokenDeployed`: Emitted when a new token is created
 
 ### SimpleERC20
 
-Contrato de token ERC20 que herda de `ERC20` da OpenZeppelin.
+ERC20 token contract that inherits from `ERC20` of OpenZeppelin.
 
-**Características:**
+**Features:**
 
-- Implementação segura e auditada via OpenZeppelin
-- Suporte a decimais customizados
-- Mint inicial configurável
-- Totalmente compatível com padrão ERC20
+- Secure and audited implementation via OpenZeppelin
+- Support for custom decimals
+- Configurable initial mint
+- Fully compatible with ERC20 standard
 
-## 💡 Exemplo de Uso
+## 💡 Usage Example
 
-### Criar um token via Factory
+### Create a token via Factory
 
 ```solidity
-// Exemplo: Criar um token chamado "Meu Token" com símbolo "MTK"
-// 18 decimais, supply inicial de 1000000 tokens
+// Example: Create a token named "My Token" with symbol "MTK"
+// 18 decimals, initial supply of 1000000 tokens
 
 ERC20Factory factory = ERC20Factory(factoryAddress);
 address tokenAddress = factory.createToken(
-    "Meu Token",      // name
+    "My Token",       // name
     "MTK",            // symbol
     18,               // decimals
-    1000000 * 10**18, // initialSupply (em wei/tokens base)
+    1000000 * 10**18, // initialSupply (in wei/base tokens)
     msg.sender        // owner
 );
 ```
 
-### Consultar tokens criados
+### Query created tokens
 
 ```solidity
-// Obter todos os tokens criados por um endereço
+// Get all tokens created by an address
 address[] memory tokens = factory.getTokensByCreator(creatorAddress);
 
-// Obter o número total de tokens
+// Get the total number of tokens
 uint256 total = factory.allTokensLength();
 ```
 
-## 🔒 Segurança
+## 🔒 Security
 
-Este projeto utiliza contratos da biblioteca OpenZeppelin, que são:
+This project uses contracts from the OpenZeppelin library, which are:
 
-- ✅ Amplamente auditados pela comunidade
-- ✅ Testados em produção
-- ✅ Seguem as melhores práticas de segurança
-- ✅ Atualizados regularmente
+- ✅ Widely audited by the community
+- ✅ Production tested
+- ✅ Follow best security practices
+- ✅ Updated regularly
 
-## 📝 Licença
+## 📝 License
 
 MIT
 
-## 🤝 Contribuindo
+## 🤝 Contributing
 
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests.
+Contributions are welcome! Feel free to open issues or pull requests.
 
-## 🚀 Deploy para Produção
+## 🚀 Deploy to Production
 
-Para instruções detalhadas sobre deploy em produção, consulte o arquivo [DEPLOYMENT.md](./DEPLOYMENT.md).
+For detailed instructions on production deployment, consult the [DEPLOYMENT.md](./DEPLOYMENT.md) file.
 
-**Checklist rápido:**
-- ✅ Compilar contratos
-- ✅ Configurar variáveis de ambiente
-- ✅ Testar em testnet primeiro
-- ✅ Verificar contrato no block explorer
-- ✅ Monitorar após deploy
+**Quick Checklist:**
+- ✅ Compile contracts
+- ✅ Configure environment variables
+- ✅ Test on testnet first
+- ✅ Verify contract on block explorer
+- ✅ Monitor after deploy
 
-## 📚 Recursos Adicionais
+## 📚 Additional Resources
 
 - [OpenZeppelin Contracts Documentation](https://docs.openzeppelin.com/contracts)
 - [Hardhat Documentation](https://hardhat.org/docs)
