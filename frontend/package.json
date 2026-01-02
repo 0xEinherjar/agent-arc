@@ -1,0 +1,27 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@binance/w3w-wagmi-connector-v2": "^1.2.9",
+    "@privy-io/node": "^0.6.2",
+    "@tanstack/vue-query": "^5.92.1",
+    "@wagmi/vue": "^0.4.3",
+    "axios": "^1.13.2",
+    "buffer": "^6.0.3",
+    "pinia": "^3.0.4",
+    "viem": "^2.42.1",
+    "vue": "^3.5.18",
+    "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.1",
+    "vite": "^7.1.2"
+  }
+}

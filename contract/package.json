@@ -1,0 +1,27 @@
+{
+  "name": "contract",
+  "version": "1.0.0",
+  "description": "",
+  "main": "scripts/deploy.js",
+  "scripts": {
+    "clean": "npx hardhat clean",
+    "compile": "npx hardhat compile",
+    "abi": "npx hardhat export-abi",
+    "deploy:tarc": "npx hardhat run --network testnet_arc scripts/deploy.js",
+    "verify": "npx hardhat run scripts/verify.js",
+    "check": "npx hardhat run scripts/check-deployment.js",
+    "node": "npx hardhat node"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "hardhat": "^2.20.1",
+    "hardhat-abi-exporter": "^2.10.1"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.4.0",
+    "dotenv": "^16.4.5"
+  }
+}
